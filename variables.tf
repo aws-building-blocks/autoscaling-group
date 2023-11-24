@@ -47,15 +47,17 @@ variable "health_check_type" {
 }
 
 variable "target_group_arns" {
-  type = list(string)
+  type        = list(string)
   description = "(Optional) Set of aws_alb_target_group ARNs, for use with Application or Network Load Balancing."
 }
 
 variable "launch_template_id" {
-  type = string
+  type        = string
+  description = "(Optional) ID of the launch template."
 }
 
 variable "launch_template_version" {
-  type    = string
-  default = "$Latest"
+  type        = string
+  default     = "$Latest"
+  description = "(Optional) Template version. Can be version number, $Latest, or $Default."
 }
