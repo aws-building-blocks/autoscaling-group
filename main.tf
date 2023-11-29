@@ -13,3 +13,9 @@ resource "aws_autoscaling_group" "asg" {
     version = var.launch_template_version
   }
 }
+
+data "aws_instances" "instances" {
+  instance_tags = {
+    "aws:autoscaling:groupName" = aws_autoscaling_group.asg.name
+  }
+}
