@@ -12,6 +12,17 @@ resource "aws_autoscaling_group" "asg" {
     id      = var.launch_template_id
     version = var.launch_template_version
   }
+
+  tag {
+    key                 = var.asg_tag_key
+    value               = var.launch_template_version
+    propagate_at_launch = true
+  }
+
+  instance_refresh {
+    strategy = var.instance_refresh.strategy
+    triggers = var.instance_refresh.triggers
+  }
 }
 
 data "aws_instances" "instances" {

@@ -61,3 +61,15 @@ variable "launch_template_version" {
   default     = "$Latest"
   description = "(Optional) Template version. Can be version number, $Latest, or $Default."
 }
+
+variable "asg_tag_key" {
+  type    = string
+  default = "launch_template_version"
+}
+
+variable "instance_refresh" {
+  type = object({
+    strategy = optional(string, "Rolling")
+    triggers = optional(list(string), ["tag"])
+  })
+}
